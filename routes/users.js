@@ -12,7 +12,7 @@ router.get('/', async(req, res, next) => {
     const client = await pool.connect()
     const result = await client.query('SELECT * FROM users');
     const results = { 'results': (result) ? result.rows : null};
-    res.render('/index', results );
+    res.render('/users', results );
     client.release();
   } catch (err) {
     console.error(err);
