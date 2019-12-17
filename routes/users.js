@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const { Pool } = require('pg');
+const bcrypt = require('bcrypt');
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true
@@ -19,5 +21,11 @@ router.get('/', async(req, res, next) => {
     res.send("Error " + err);
   }
 })
+
+router.post('/register', function(req,res) {
+  bcrypt.hash("Magicstar198.", 10, function (err,hash) {
+    pool.connect().query('INSERT INTO users (user_email, user_password) VALUES ('+req.body.email+', '+hash+')')
+  });
+});
 
 module.exports = router;
