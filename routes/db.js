@@ -15,7 +15,8 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req,res) {
   bcrypt.hash("Magicstar198.", 10, function (err,hash) {
-    pool.connect().query('INSERT INTO users (user_email, user_password) VALUES ('+req.body.email+', '+hash+')')
+   const client2 = pool.connect()
+   const requete = client2.query('INSERT INTO users (user_email, user_password) VALUES ('+req.body.email+', '+hash+')')
   });
 });
 module.exports = router;
