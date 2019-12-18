@@ -13,10 +13,14 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.post('/', function(req,res) {
-  bcrypt.hash("Magicstar198.", 10, function (err,hash) {
-   const client2 = pool.connect()
-   const requete = client2.query('INSERT INTO users (user_email, user_password) VALUES ("test@test.com", "password")')
+router.post('/', async(req,res, next) =>{
+  try {
+   const client2 = await pool.connect()
+   const requete = await client2.query('INSERT INTO users (user_email, user_password) VALUES ("test@test.com", "password")')
+  }
+  catch(err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
   });
-});
 module.exports = router;
