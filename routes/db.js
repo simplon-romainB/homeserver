@@ -18,7 +18,7 @@ router.post('/', async(req,res, next) =>{
   var hash = bcrypt.hashSync(req.body.password, salt);
   bcrypt.genSalt(10, function(err,salt) {
     bcrypt.hash(req.body.password, salt, function(err, hash){
-      let pass = hash
+       pass = hash
     })
   })
   const text = "INSERT INTO users (user_email, user_password, user_role, user_id) VALUES ($1,$2,$3, DEFAULT)";
