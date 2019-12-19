@@ -14,8 +14,13 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', async(req,res, next) =>{
+  bcrypt.genSalt(10, function(err,salt) {
+    bcrypt.hash(req.body.password, salt, function(err, hash){
+      let pass = hash
+    })
+  })
   const text = "INSERT INTO users (user_email, user_password, user_role, user_id) VALUES ($1,$2,$3, DEFAULT)";
-  const values = [req.body.email, req.body.password, "user"]
+  const values = [req.body.email, pass, "user"]
   try {
    const client2 = await pool.connect()
    const requete = await client2.query(text,values)
