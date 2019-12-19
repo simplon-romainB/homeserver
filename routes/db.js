@@ -22,7 +22,7 @@ router.post('/', async(req,res, next) =>{
     })
   })
   const text = "INSERT INTO users (user_email, user_password, user_role, user_id) VALUES ($1,$2,$3, DEFAULT)";
-  const values = [req.body.email, hashj, "user"]
+  const values = [req.body.email, hash, "user"]
   try {
    const client2 = await pool.connect()
    const requete = await client2.query(text,values)
