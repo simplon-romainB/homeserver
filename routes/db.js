@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 router.post('/', async(req,res, next) =>{
   try {
    const client2 = await pool.connect()
-   const requete = await client2.query('INSERT INTO users VALUES (''test@test.com'', ''password'', ''user'', DEFAULT)')
+   const requete = await client2.query('INSERT INTO users VALUES ("test@test.com", "password", "user", DEFAULT)')
   }
   catch(err) {
     console.error(err);
