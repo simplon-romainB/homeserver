@@ -20,9 +20,7 @@ router.post('/', async(req,response, next) =>{
     let hashFinal =requete.rows[0].user_password
     let comparison = bcrypt.compare(req.body.password, hashFinal, function(err, res){
         check = res
-        console.log(check)
         if (check === true){
-            response.send("password ok");
             let token = jwt.sign({username: req.body.email},
                 config.secret,
                 { expiresIn: '24h' // expires in 24 hours
