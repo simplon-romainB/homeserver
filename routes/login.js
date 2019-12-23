@@ -20,8 +20,7 @@ router.post('/', async(req,response, next) =>{
         check = res
         console.log(check)
         if (check === true){
-            console.log(req.body.email,hashFinal)
-            response.send(JSON.stringify(req.body.email), hashFinal);
+            res.send("password ok");
             
             
         }
