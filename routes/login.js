@@ -15,7 +15,9 @@ router.post('/', async(req,res, next) =>{
     const requete =  await client2.query(hash,values)
     //let requeteJson = JSON.stringify(requete)
     let hashFinal =requete.rows[0].user_password
-    let comparison = bcrypt.compare(req.body.password, hashFinal)
+    let comparison = bcrypt.compare(req.body.password, hashFinal, function(err, res){
+        console.log(res)
+    })
     if (comparison == true){
         console.log(req.body.email,requete.toString())
         res.send(req.body.email,requete.toString())
