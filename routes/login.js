@@ -9,7 +9,7 @@ const pool = new Pool({
 });
 
 let check;
-router.post('/', async(req,res, next) =>{
+router.post('/', async(req,response, next) =>{
     const hash = "SELECT user_password FROM users WHERE user_email = $1"
     const values = [req.body.email]
     const client2 =  await pool.connect()
@@ -21,8 +21,8 @@ router.post('/', async(req,res, next) =>{
         console.log(check)
         if (check === true){
             console.log(req.body.email,hashFinal)
-            res.send(JSON.stringify(req.body.email));
-            res.send(JSON.stringify(hashFinal));
+            response.send(JSON.stringify(req.body.email));
+            response.send(JSON.stringify(hashFinal));
             
         }
         else {
