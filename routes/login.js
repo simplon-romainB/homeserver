@@ -21,7 +21,7 @@ router.post('/', async(req,response, next) =>{
         console.log(check)
         if (check === true){
             response.send("password ok");
-            let token = jwt.sign({username: username},
+            let token = jwt.sign({username: req.body.email},
                 config.secret,
                 { expiresIn: '24h' // expires in 24 hours
                 }
