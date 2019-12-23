@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
+let jwt = require('jsonwebtoken');
 //MemcachedStore = require("connect-memcached")(session);
 const body = require('body-parser');
 const bcrypt = require('bcryptjs');
