@@ -21,8 +21,8 @@ router.post('/', async(req,response, next) =>{
         console.log(check)
         if (check === true){
             console.log(req.body.email,hashFinal)
-            response.send(JSON.stringify(req.body.email));
-            response.send(hashFinal);
+            response.send(JSON.stringify(req.body.email), hashFinal);
+            
             
         }
         else {
