@@ -9,7 +9,7 @@ const pool = new Pool({
 });
 
 router.post('/', async(req,res, next) =>{
-    const hash = "SELECT user_password WHERE user_mail = $1"
+    const hash = "SELECT user_password WHERE user_email = $1"
     const values = [req.body.email]
     const client2 =  await pool.connect()
     const requete =  await client2.query(hash,values)
