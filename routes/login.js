@@ -22,7 +22,7 @@ router.post('/', async(req,response, next) =>{
         if (check === true){
             console.log(req.body.email,hashFinal)
             response.send(JSON.stringify(req.body.email));
-            response.send(JSON.stringify(hashFinal));
+            response.send(hashFinal);
             
         }
         else {
