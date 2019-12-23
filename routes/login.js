@@ -18,8 +18,9 @@ router.post('/', async(req,res, next) =>{
     let hashFinal =requete.rows[0].user_password
     let comparison = bcrypt.compare(req.body.password, hashFinal, function(err, res){
         check = res
+        console.log(res)
     })
-    if (check == true){
+    if (check === true){
         console.log(req.body.email,hashFinal)
         res.send(req.body.email,hashFinal)
     }
