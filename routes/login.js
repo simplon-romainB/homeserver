@@ -16,9 +16,9 @@ router.post('/', async(req,res, next) =>{
     //let requeteJson = JSON.stringify(requete)
     let hashFinal =requete.rows[0].user_password
     let comparison = bcrypt.compare(req.body.password, hashFinal, function(err, res){
-        console.log(res)
+        check = res
     })
-    if (comparison == true){
+    if (check == true){
         console.log(req.body.email,requete.toString())
         res.send(req.body.email,requete.toString())
     }
