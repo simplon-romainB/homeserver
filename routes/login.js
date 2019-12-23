@@ -13,9 +13,9 @@ router.post('/', async(req,res, next) =>{
     const values = [req.body.email]
     const client2 =  await pool.connect()
     const requete =  await client2.query(hash,values)
-    let comparison = bcrypt.compare(req.body.password, requete);
+    let comparison = bcrypt.compare(req.body.password, requete.toString());
     if (comparison == true){
-        res.send(req.body.email,requete)
+        res.send(req.body.email,requete.toString())
     }
     else {
         res.send("wrong password");
