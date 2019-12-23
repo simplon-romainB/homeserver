@@ -21,8 +21,9 @@ router.post('/', async(req,res, next) =>{
         console.log(check)
         if (check === true){
             console.log(req.body.email,hashFinal)
-            res.send((req.body.email).toString())
-            res.send(hashfinal.toString())
+            res.send(JSON.stringify(req.body.email));
+            res.send(JSON.stringify(hashFinal));
+            
         }
         else {
             res.send("wrong password");
