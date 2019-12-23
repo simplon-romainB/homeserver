@@ -20,12 +20,12 @@ router.post('/', async(req,response, next) =>{
         check = res
         console.log(check)
         if (check === true){
-            res.send("password ok");
+            response.send("password ok");
             
             
         }
         else {
-            res.send("wrong password");
+            response.send("wrong password");
         }
     })
 
