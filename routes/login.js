@@ -21,6 +21,17 @@ router.post('/', async(req,response, next) =>{
         console.log(check)
         if (check === true){
             response.send("password ok");
+            let token = jwt.sign({username: username},
+                config.secret,
+                { expiresIn: '24h' // expires in 24 hours
+                }
+              );
+              // return the JWT token for the future API calls
+              res.json({
+                success: true,
+                message: 'Authentication successful!',
+                token: token
+              });
             
             
         }
