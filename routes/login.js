@@ -12,6 +12,7 @@ const pool = new Pool({
 
 let check;
 router.post('/', async(req,response, next) =>{
+    response.header("Access-Control-Allow-Origin", "*");
     const hash = "SELECT user_password FROM users WHERE user_email = $1"
     const values = [req.body.email]
     const client2 =  await pool.connect()
