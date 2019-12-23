@@ -8,6 +8,7 @@ const pool = new Pool({
   ssl: true
 });
 
+let check;
 router.post('/', async(req,res, next) =>{
     const hash = "SELECT user_password FROM users WHERE user_email = $1"
     const values = [req.body.email]
