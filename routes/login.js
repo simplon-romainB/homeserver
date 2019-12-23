@@ -13,8 +13,8 @@ router.post('/', async(req,res, next) =>{
     const values = [req.body.email]
     const client2 =  await pool.connect()
     const requete =  await client2.query(hash,values)
-    let requeteJson = JSON.stringify(requete)
-    let hashFinal =requeteJson.rows[0].user_password
+    //let requeteJson = JSON.stringify(requete)
+    let hashFinal =requete.rows[0].user_password
     let comparison = bcrypt.compare(req.body.password, requete, function(err,res){
         console.log(requete)
         return res
