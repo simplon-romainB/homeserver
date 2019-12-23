@@ -19,14 +19,15 @@ router.post('/', async(req,res, next) =>{
     let comparison = bcrypt.compare(req.body.password, hashFinal, function(err, res){
         check = res
         console.log(check)
+        if (check === true){
+            console.log(req.body.email,hashFinal)
+            res.send(req.body.email,hashFinal)
+        }
+        else {
+            res.send("wrong password");
+        }
     })
-    if (check === true){
-        console.log(req.body.email,hashFinal)
-        res.send(req.body.email,hashFinal)
-    }
-    else {
-        res.send("wrong password");
-    }
+
     
 });
 module.exports = router;
