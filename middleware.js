@@ -1,5 +1,5 @@
 let jwt = require('jsonwebtoken');
-const config = require('middleware.js');
+const config = require('C:\Users\romain\omeserver\omeserver\middleware.js');
 
 let checkToken = (req, res, next) => {
   let token = req.headers['x-access-token'] || req.headers['authorization']; // Express headers are auto converted to lowercase
