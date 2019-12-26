@@ -16,6 +16,7 @@ router.get('/', async(req,response, next) =>{
     const client2 =  await pool.connect()
     const requete =  await client2.query(request)
     let reponse = response.json();
+    console.log(response)
     response.send(reponse);
 });
 
