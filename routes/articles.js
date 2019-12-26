@@ -16,7 +16,7 @@ router.get('/', async(req,response, next) =>{
     const client2 =  await pool.connect()
     const requete =  await client2.query(request)
     console.log(requete)
-    response.send(requete);
+    response.send(requete.rows);
 });
 
 module.exports = router;
