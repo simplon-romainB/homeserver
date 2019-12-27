@@ -14,9 +14,11 @@ let check;
 router.post('/', async(req,response, next) =>{
     response.header("Access-Control-Allow-Origin", "*");
     const hash = "SELECT user_password FROM users WHERE user_email = $1"
+    const role = "SELECT user_role FROM users WHERE user_mail = $1"
     const values = [req.body.email]
     const client2 =  await pool.connect()
     const requete =  await client2.query(hash,values)
+    const requete2 = await client2.query(role,values)
     //let requeteJson = JSON.stringify(requete)
     let hashFinal =requete.rows[0].user_password
     let comparison = bcrypt.compare(req.body.password, hashFinal, function(err, res){
@@ -30,7 +32,7 @@ router.post('/', async(req,response, next) =>{
               // return the JWT token for the future API calls
               let reponse = JSON.stringify(token)
               response.send(reponse)
-              
+              response.send(requete2.rows[0].role)
             
             
         }
