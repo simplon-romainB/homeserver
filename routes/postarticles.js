@@ -14,6 +14,7 @@ const pool = new Pool({
 
 
 router.post('/', (req,res,next) => {
+  console.log("je vais sur la route");
   middle.checkToken();
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Authorization", req.header.token)
