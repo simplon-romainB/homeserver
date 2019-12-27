@@ -14,7 +14,7 @@ var usersRouter = require('./routes/users');
 var dbRouter = require('./routes/db');
 var loginRouter = require('./routes/login');
 var articlesRouter = require('./routes/articles');
-var postarticlesRouter = require('./router/postarticles');
+var postarticlesRouter = require('./routes/postarticles');
 
 var app = express();
 
