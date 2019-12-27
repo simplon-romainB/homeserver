@@ -13,15 +13,15 @@ const pool = new Pool({
 
 
 
-router.post('/', (req,res,next) => {
+router.post('/', async(req,res,next) => {
   console.log("je vais sur la route");
   //middle.checkToken();
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Authorization", req.header.token)
   const request = "INSERT INTO users (DEFAULT,$1,$2,$3)";
   const args = [req.body.titre, req.body.article, req.body.date];
-  const client = pool.connect()
-  const requete = client.query(request,args);
+  const client = await pool.connect()
+  const requete = await client.query(request,args);
 })
 
 module.exports = router;
