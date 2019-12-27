@@ -32,7 +32,7 @@ router.post('/', async(req,response, next) =>{
                // message: 'Authentication successful!',
                // token: token,
                // username: req.body.email })
-              //response.send(token)
+              response.send(token)
               
             
             
