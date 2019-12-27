@@ -14,7 +14,7 @@ let check;
 router.post('/', async(req,response, next) =>{
     response.header("Access-Control-Allow-Origin", "*");
     const hash = "SELECT user_password FROM users WHERE user_email = $1"
-    const role = "SELECT user_role FROM users WHERE user_mail = $1"
+    const role = "SELECT user_role FROM users WHERE user_email = $1"
     const values = [req.body.email]
     const client2 =  await pool.connect()
     const requete =  await client2.query(hash,values)
