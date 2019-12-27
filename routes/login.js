@@ -30,8 +30,7 @@ router.post('/', async(req,response, next) =>{
               // return the JWT token for the future API calls
               let reponse = response.json({success: true,
                 message: 'Authentication successful!',
-                token: token,
-                username: req.body.email })
+                token: token})
               response.send(reponse)
               
             
