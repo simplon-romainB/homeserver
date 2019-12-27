@@ -15,7 +15,7 @@ const pool = new Pool({
 
 router.post('/', (req,res,next) => {
   console.log("je vais sur la route");
-  middle.checkToken();
+  //middle.checkToken();
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Authorization", req.header.token)
   const request = "INSERT INTO users (DEFAULT,$1,$2,$3)";
