@@ -18,7 +18,7 @@ router.post('/', async(req,res,next) => {
   //middle.checkToken();
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Authorization", req.header.token)
-  const request = "INSERT INTO users  (DEFAULT,$2,$3,$4)";
+  const request = "INSERT INTO articles  (DEFAULT,$1,$2,$3)";
   const args = [req.body.titre, req.body.article, req.body.date];
   const client = await pool.connect()
   const requete = await client.query(request,args);
