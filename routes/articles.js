@@ -16,7 +16,7 @@ router.get('/', async(req,response, next) =>{
     const request = "SELECT * FROM articles";
     const client2 =  await pool.connect()
     const requete =  await client2.query(request)
-    console.log(requete)
+   
     response.send(requete.rows);
 });
 
@@ -25,7 +25,7 @@ router.post('/', (req,res,next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Authorization", req.header.token)
   const request = "INSERT INTO users (DEFAULT,$1,$2,$3)";
-  const args = [req.body.name, req.body.text, req.body.date];
+  const args = [req.body.titre, req.body.article, req.body.date];
   const client = pool.connect()
   const requete = client.query(request,args);
 })
