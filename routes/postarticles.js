@@ -5,6 +5,8 @@ const bcrypt = require('bcryptjs');
 let jwt = require('jsonwebtoken');
 const config = require('./config.js');
 var middle = require('../middleware.js');
+var app = express();
+
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -15,6 +17,7 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "*");
   next();
 });
+//app.use(cors())
 
 
 router.post('/', async(req,res,next) => {
