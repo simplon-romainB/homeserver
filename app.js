@@ -40,7 +40,7 @@ app.use((req, res, next) => {
   // authorized headers for preflight requests
   // https://developer.mozilla.org/en-US/docs/Glossary/preflight_request
   //res.header('Access-Control-Allow-Headers', '*');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Authorization, Accept");
+  res.header("Access-Control-Allow-Headers", "*");
   next();
 
   app.options('*', (req, res) => {
