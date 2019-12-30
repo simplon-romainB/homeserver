@@ -21,12 +21,12 @@ app.use(function(req, res, next) {
 
 router.post('/', async(req,res,next) => {
     let transporter = nodeMailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
+        host: "smtp-mail.outlook.com",
+        port: 587,
         secure: true,
         auth: {
             // should be replaced with real sender's account
-            user: 'yyshtar@gmail.com',
+            user: 'neriaa@hotmail.fr',
             pass: '3225199b'
         }
     });
