@@ -21,20 +21,17 @@ app.use(function(req, res, next) {
 
 router.post('/', async(req,res,next) => {
     let transporter = nodeMailer.createTransport({
-        host: "smtp-mail.outlook.com",
+        host: "mail.gmx.com",
         port: 587,
         secure: false,
-        tls: {
-            ciphers:'SSLv3'
-         },
         auth: {
             // should be replaced with real sender's account
-            user: 'neriaa@hotmail.fr',
-            pass: '3225199b'
+            user: 'yysh@gmx.fr',
+            pass: 'magicstar198'
         }
     });
     let info = await transporter.sendMail({
-        from: 'yyshtar@gmail.com', // sender address
+        from: 'yysh@gmx.fr', // sender address
         to: "romain.barry69@gmail.com",
         subject: req.body.email, // Subject line
         text: req.body.message // plain text body
