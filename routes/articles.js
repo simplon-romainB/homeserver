@@ -13,7 +13,7 @@ const pool = new Pool({
 
 router.get('/', async(req,response, next) =>{
     response.header("Access-Control-Allow-Origin", "*");
-    const request = "SELECT * FROM articles";
+    const request = "SELECT * FROM articles, comments";
     const client2 =  await pool.connect()
     const requete =  await client2.query(request)
    

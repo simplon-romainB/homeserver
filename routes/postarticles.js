@@ -21,8 +21,6 @@ app.use(function(req, res, next) {
 
 
 router.post('/', async(req,res,next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "*");
   middle.checkToken(req,res,next);
   const request = "INSERT INTO articles (articles_id,articles_name,articles_body,articles_date) VALUES (DEFAULT,$1,$2,$3)";
   const args = [req.body.titre, req.body.article, req.body.date];
