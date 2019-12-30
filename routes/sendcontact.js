@@ -32,9 +32,9 @@ router.post('/', async(req,res,next) => {
     });
     let mailOptions = {
         // should be replaced with real recipient's account
-        subject: req.body.email,
+        subject: (req.body.email).toString(),
         to: 'romain.barry69',
-        body: req.body.message
+        body: (req.body.message).toString()
     };
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
