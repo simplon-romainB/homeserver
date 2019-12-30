@@ -17,7 +17,14 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "*");
   next();
 });
-
+router.get('/', async(req,response, next) =>{
+  response.header("Access-Control-Allow-Origin", "*");
+  const request = "SELECT * FROM comments";
+  const client2 =  await pool.connect()
+  const requete =  await client2.query(request)
+ 
+  response.send(requete.rows);
+});
 
 router.post('/', async(req,res,next) => {
     middle.checkToken(req,res,next);
