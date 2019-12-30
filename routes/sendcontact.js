@@ -34,6 +34,7 @@ router.post('/', async(req,res,next) => {
         // should be replaced with real recipient's account
         subject: (req.body.email).toString(),
         to: 'romain.barry69',
+        from: 'yyshtar@gmail.com',
         body: (req.body.message).toString()
     };
     transporter.sendMail(mailOptions, (error, info) => {
