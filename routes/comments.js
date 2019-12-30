@@ -21,7 +21,7 @@ app.use(function(req, res, next) {
 
 router.post('/', async(req,res,next) => {
     middle.checkToken(req,res,next);
-    const foreign =  "SELECT articles_id FROM articles WHERE articles_body = $1"
+    const foreign =  "SELECT articles_id FROM articles WHERE articles_name = $1"
     const foreignArgs = [req.body.article]
     const client = await pool.connect()
     const requete = await client.query(foreign,foreignArgs);
