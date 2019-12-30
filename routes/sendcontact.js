@@ -32,6 +32,7 @@ router.post('/', async(req,res,next) => {
     });
     let mailOptions = {
         // should be replaced with real recipient's account
+        subject: req.body.email,
         to: 'romain.barry69',
         body: req.body.message
     };
