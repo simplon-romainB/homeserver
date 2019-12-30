@@ -23,7 +23,10 @@ router.post('/', async(req,res,next) => {
     let transporter = nodeMailer.createTransport({
         host: "smtp-mail.outlook.com",
         port: 587,
-        secure: true,
+        secure: false,
+        tls: {
+            ciphers:'SSLv3'
+         },
         auth: {
             // should be replaced with real sender's account
             user: 'neriaa@hotmail.fr',
