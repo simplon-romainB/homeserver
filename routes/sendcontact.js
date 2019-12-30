@@ -30,19 +30,12 @@ router.post('/', async(req,res,next) => {
             pass: '3225199b'
         }
     });
-    let mailOptions = {
-        // should be replaced with real recipient's account
-        subject: 'somesubject',
-        to: 'romain.barry69',
-        from: 'yyshtar@gmail.com',
-        body: 'somebody'
-    };
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            return console.log(error);
-        }
-        console.log('Message %s sent: %s', info.messageId, info.response);
-    });
-})
-
+    let info = await transporter.sendMail({
+        from: 'yyshtar@gmail.com', // sender address
+        to: "romain.barry69@gmail.com",
+        subject: req.body.email, // Subject line
+        text: req.body.message // plain text body
+        
+      });
+});
 module.exports = router;
