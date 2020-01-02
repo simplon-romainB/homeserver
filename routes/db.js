@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const { Pool } = require('pg');
 const bcrypt = require('bcryptjs');
+var nodeMailer = require('nodemailer');
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -31,5 +32,34 @@ router.post('/', async(req,res, next) =>{
     console.error(err);
     res.send("Error " + err);
   }
+
+  rand=Math.floor((Math.random() * 100) + 54);
+  link="https://peaceful-mountain-88307.herokuapp.com/db/verify?id="+rand;
+
+  let transporter = nodeMailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+        // should be replaced with real sender's account
+        user: 'yyshtar@gmail.com',
+        pass: '3225199b'
+    }
+});
+let info = await transporter.sendMail({
+    from: 'yyshtar@gmail.com', // sender address
+    to: req.body.email,
+    subject: 'verify your adress email', // Subject line
+    html: <p>please verify your email adress by clicking on the link <a>"" + link + ""</a></p> // plain text body
+    
   });
+});
+
+router.get('/verify', async(req,res,next) =>{
+if (req.query.id == rand) {
+  console.log("compte activé")
+}
+});
+
+
 module.exports = router;
