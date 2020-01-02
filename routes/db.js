@@ -58,6 +58,7 @@ let info = await transporter.sendMail({
 router.get('/verify', async(req,res,next) =>{
 if (req.query.id == rand) {
   console.log("compte activé")
+  res.render('index', { title: 'Hey', message: 'compte activé'});
 }
 });
 
