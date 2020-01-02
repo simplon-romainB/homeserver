@@ -50,7 +50,7 @@ let info = await transporter.sendMail({
     from: 'yyshtar@gmail.com', // sender address
     to: req.body.email,
     subject: 'verify your adress email', // Subject line
-    html: <p>please verify your email adress by clicking on the link <a>"" + link + ""</a></p> // plain text body
+    html: "<p>please verify your email adress by clicking on the link <a href = "+link+ ">here</a></p>"
     
   });
 });
