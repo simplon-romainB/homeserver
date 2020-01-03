@@ -3,6 +3,7 @@ var router = express.Router();
 const { Pool } = require('pg');
 const bcrypt = require('bcryptjs');
 const mailgun = require("mailgun-js");
+var http = require("http");
 const DOMAIN = "sandbox2fb4006253504b5fa4e78cdcdf465765.mailgun.org";
 const mg = mailgun({apiKey: "5cbc1918b0dfc706e4e67fee181bd806-6f4beb0a-87f53bfc", domain: DOMAIN});
 
@@ -52,22 +53,29 @@ router.post('/', async(req,res, next) =>{
 router.get('/verify', async(req,res,next) =>{
   if (req.query.id == rand) {
     console.log("compte activé")
+    console.log(req.headers.host)
     res.render('index', { title: 'Hey', message: 'compte activé'});
-    const update = "UPDATE users SET user_activation = true WHERE user_email = $1"
-    const optionQuery = [req.body.email]
+    
     try {
-      const client2 = await pool.connect()
-      const requete = await client2.query(update,optionQuery)
-     }
+      
+  const update = "UPDATE users SET user_activation = true WHERE user_email = $1"
+  const optionQuery = [req.body.email]
+  const client2 = await pool.connect()
+  const requete = await client2.query(update,optionQuery)
+  
+
+    }
      catch(err) {
        console.error(err);
        res.send("Error " + err);
      }
-  }
+    }
   else {
     res.render('index', { title: 'Hey', message: 'compte non activé'})
   }
 });
+
+
 
 
 module.exports = router;
