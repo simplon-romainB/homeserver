@@ -53,10 +53,11 @@ router.get('/verify', async(req,res,next) =>{
   if (req.query.id == rand) {
     console.log("compte activé")
     res.render('index', { title: 'Hey', message: 'compte activé'});
-    const update = "UPDATE users SET users_activation = true"
+    const update = "UPDATE users SET users_activation = true WHERE users_email = $1"
+    const optionQuery = [req.body.email]
     try {
       const client2 = await pool.connect()
-      const requete = await client2.query(update)
+      const requete = await client2.query(update,optionQuery)
      }
      catch(err) {
        console.error(err);
