@@ -44,15 +44,15 @@ router.post('/', async(req,res, next) =>{
   
   mg.messages().send(data, function (error, body) {
     console.log(body);
+    });
   });
-  
   
 
 router.get('/verify', async(req,res,next) =>{
-if (req.query.id == rand) {
-  console.log("compte activé")
-  res.render('index', { title: 'Hey', message: 'compte activé'});
-}
+  if (req.query.id == rand) {
+    console.log("compte activé")
+    res.render('index', { title: 'Hey', message: 'compte activé'});
+  }
 });
 
 
