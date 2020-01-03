@@ -2,7 +2,10 @@ var express = require('express');
 var router = express.Router();
 const { Pool } = require('pg');
 const bcrypt = require('bcryptjs');
-var nodeMailer = require('nodemailer');
+const mailgun = require("mailgun-js");
+const DOMAIN = "sandbox2fb4006253504b5fa4e78cdcdf465765.mailgun.org";
+const mg = mailgun({apiKey: "5cbc1918b0dfc706e4e67fee181bd806-6f4beb0a-87f53bfc", domain: DOMAIN});
+
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -10,9 +13,7 @@ const pool = new Pool({
 });
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+
 
 router.post('/', async(req,res, next) =>{
   var salt = bcrypt.genSaltSync(10);
@@ -32,28 +33,20 @@ router.post('/', async(req,res, next) =>{
     console.error(err);
     res.send("Error " + err);
   }
-
+  const data = {
+    from: "Mailgun Sandbox <postmaster@sandbox2fb4006253504b5fa4e78cdcdf465765.mailgun.org>",
+    to: req.body.email,
+    subject: "email verification",
+    html: "<p>please click this<a href = "+ link+ ">link</a></p>"
+  };
   rand=Math.floor((Math.random() * 100) + 54);
   link="https://peaceful-mountain-88307.herokuapp.com/db/verify?id="+rand;
-
-  let transporter = nodeMailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-        // should be replaced with real sender's account
-        user: 'yyshtar@gmail.com',
-        pass: '3225199b'
-    }
-});
-let info = await transporter.sendMail({
-    from: 'yyshtar@gmail.com', // sender address
-    to: req.body.email,
-    subject: 'verify your adress email', // Subject line
-    html: "<p>please verify your email adress by clicking on the link <a href = "+link+ ">here</a></p>"
-    
+  
+  mg.messages().send(data, function (error, body) {
+    console.log(body);
   });
-});
+  
+  
 
 router.get('/verify', async(req,res,next) =>{
 if (req.query.id == rand) {
