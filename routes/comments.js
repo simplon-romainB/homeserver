@@ -37,7 +37,7 @@ router.post('/', async(req,res,next) => {
     const args = [requete.rows[0].articles_id, req.body.comment,req.body.author, req.body.date];
     const client2 = await pool.connect()
     const requete2 = await client2.query(request,args);
-    res.send(requete);
+    res.send(args);
   })
   
   module.exports = router;
