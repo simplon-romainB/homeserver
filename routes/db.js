@@ -33,14 +33,15 @@ router.post('/', async(req,res, next) =>{
     console.error(err);
     res.send("Error " + err);
   }
+  rand=Math.floor((Math.random() * 100) + 54);
+  link="https://peaceful-mountain-88307.herokuapp.com/db/verify?id="+rand;
   const data = {
     from: "Mailgun Sandbox <postmaster@sandbox2fb4006253504b5fa4e78cdcdf465765.mailgun.org>",
     to: req.body.email,
     subject: "email verification",
     html: "<p>please click this<a href = "+ link+ ">link</a></p>"
   };
-  rand=Math.floor((Math.random() * 100) + 54);
-  link="https://peaceful-mountain-88307.herokuapp.com/db/verify?id="+rand;
+  
   
   mg.messages().send(data, function (error, body) {
     console.log(body);
