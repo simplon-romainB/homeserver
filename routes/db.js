@@ -49,7 +49,7 @@ router.post('/', async(req,res, next) =>{
   });
   
 
-router.post('/verify', async(req,res,next) =>{
+router.put('/verify', async(req,res,next) =>{
   if (req.query.id == rand) {
     console.log("compte activé")
     res.render('index', { title: 'Hey', message: 'compte activé'});
