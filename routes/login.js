@@ -15,7 +15,7 @@ router.post('/', async(req,response, next) =>{
     response.header("Access-Control-Allow-Origin", "*");
     const hash = "SELECT user_password FROM users WHERE user_email = $1"
     const role = "SELECT user_role FROM users WHERE user_email = $1"
-    const active = "SELECT user_activated FROM users WHERE user_email = $1"
+    const active = "SELECT user_activation FROM users WHERE user_email = $1"
     const values = [req.body.email]
     const client2 =  await pool.connect()
     const requete =  await client2.query(hash,values)
@@ -32,7 +32,7 @@ router.post('/', async(req,response, next) =>{
                 }
               );
               // return the JWT token for the future API calls
-              let reponse = JSON.stringify([token,requete2.rows[0].user_role,requete3.rows[0].user_activated])
+              let reponse = JSON.stringify([token,requete2.rows[0].user_role,requete3.rows[0].user_activation])
               response.send(reponse)
               
             
