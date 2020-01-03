@@ -6,7 +6,7 @@ const mailgun = require("mailgun-js");
 var http = require("http");
 const DOMAIN = "sandbox2fb4006253504b5fa4e78cdcdf465765.mailgun.org";
 const mg = mailgun({apiKey: "5cbc1918b0dfc706e4e67fee181bd806-6f4beb0a-87f53bfc", domain: DOMAIN});
-
+var mailVerified;
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -47,19 +47,19 @@ router.post('/', async(req,res, next) =>{
   mg.messages().send(data, function (error, body) {
     console.log(body);
     });
+  mailVerified = req.body.email
   });
   
 
 router.get('/verify', async(req,res,next) =>{
   if (req.query.id == rand) {
     console.log("compte activé")
-    console.log(req.headers.host)
     res.render('index', { title: 'Hey', message: 'compte activé'});
     
     try {
       
   const update = "UPDATE users SET user_activation = true WHERE user_email = $1"
-  const optionQuery = [req.body.email]
+  const optionQuery = [mailVerified]
   const client2 = await pool.connect()
   const requete = await client2.query(update,optionQuery)
   
