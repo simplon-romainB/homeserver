@@ -30,8 +30,7 @@ router.post('/', async(req,response, next) =>{
                 }
               );
               // return the JWT token for the future API calls
-              let reponse = JSON.stringify([token,requete2.rows[0].user_role])
-              console.log(requete2)
+              let reponse = JSON.stringify([token,requete2.rows[0].user_role,requete2.rows[0].user_activated])
               response.send(reponse)
               
             
