@@ -13,6 +13,7 @@ const pool = new Pool({
 let check;
 router.post('/', async(req,response, next) =>{
     response.header("Access-Control-Allow-Origin", "*");
+    try {
     const hash = "SELECT user_password FROM users WHERE user_email = $1"
     const role = "SELECT user_role FROM users WHERE user_email = $1"
     const active = "SELECT user_activation FROM users WHERE user_email = $1"
@@ -39,10 +40,13 @@ router.post('/', async(req,response, next) =>{
             
         }
         else {
-            response.send("wrong password");
+            response.send(JSON.stringify("wrong password"));
         }
     })
-
+    }
+    catch(err) {
+        console.log("catch" +err)
+    }
     
 });
 module.exports = router;
