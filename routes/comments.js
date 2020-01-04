@@ -24,6 +24,7 @@ router.get('/', async(req,response, next) =>{
   const requete =  await client2.query(request)
  
   response.send(requete.rows);
+  response.end()
 });
 
 router.post('/', async(req,res,next) => {
