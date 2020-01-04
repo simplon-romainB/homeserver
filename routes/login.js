@@ -14,14 +14,20 @@ let check;
 router.post('/', async(req,response, next) =>{
     response.header("Access-Control-Allow-Origin", "*");
     try {
+
     const hash = "SELECT user_password FROM users WHERE user_email = $1"
     const role = "SELECT user_role FROM users WHERE user_email = $1"
     const active = "SELECT user_activation FROM users WHERE user_email = $1"
     const values = [req.body.email]
     const client2 =  await pool.connect()
     const requete =  await client2.query(hash,values)
+    if (requete.rows[0].user_password == null) {
+        res.send("email doesn't exist")
+    }
+    else {
     const requete2 = await client2.query(role,values)
     const requete3 = await client2.query(active,values)
+
     //let requeteJson = JSON.stringify(requete)
     let hashFinal =requete.rows[0].user_password
     let comparison = bcrypt.compare(req.body.password, hashFinal, function(err, res){
@@ -44,8 +50,9 @@ router.post('/', async(req,response, next) =>{
         }
     })
     }
+}
     catch(err) {
-        err.send(err)
+        console.log(err)
     }
     
 });
