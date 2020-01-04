@@ -10,11 +10,7 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true
 });
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "*");
-    next();
-  });
+
 let check;
 router.post('/', async(req,response, next) =>{
     try {
@@ -50,7 +46,7 @@ router.post('/', async(req,response, next) =>{
             
         }
         else {
-            response.send("wrong password");
+            response.send(JSON.stringify("wrong password"));
         }
     })
     }
