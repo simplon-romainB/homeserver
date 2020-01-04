@@ -22,7 +22,7 @@ router.post('/', async(req,response, next) =>{
     const client2 =  await pool.connect()
     const requete =  await client2.query(hash,values)
     if (requete.rows[0] == null) {
-        res.send("email doesn't exist")
+        response.send("email doesn't exist")
     }
     else {
     const requete2 = await client2.query(role,values)
