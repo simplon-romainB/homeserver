@@ -50,7 +50,7 @@ router.post('/', async(req,response, next) =>{
             
         }
         else {
-            response.send(JSON.stringify("wrong password"));
+            response.send("wrong password");
         }
     })
     }
