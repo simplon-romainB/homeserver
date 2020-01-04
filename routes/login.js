@@ -4,6 +4,7 @@ const { Pool } = require('pg');
 const bcrypt = require('bcryptjs');
 let jwt = require('jsonwebtoken');
 const config = require('./config.js');
+var app = express();
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
