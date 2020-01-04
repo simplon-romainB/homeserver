@@ -22,12 +22,11 @@ router.get('/', async(req,response, next) =>{
   response.header("Access-Control-Allow-Origin", "*");
   const request = "SELECT * FROM comments";
   const client2 =  await pool.connect()
-  const requete =  await client2.query(request, function(err,result){ done()})
+  const requete =  await client2.query(request, function(err,result){ client2.end();})
  
   response.send(requete.rows);
   response.end()
-  res.socket.destroy();
-  pool.end();
+  
 });
 
 router.post('/', async(req,res,next) => {
@@ -35,16 +34,15 @@ router.post('/', async(req,res,next) => {
     const foreign =  "SELECT articles_id FROM articles WHERE articles_name = $1"
     const foreignArgs = [req.body.article]
     const client = await pool.connect()
-    const requete = await client.query(foreign,foreignArgs, function(err,result){ done()});
+    const requete = await client.query(foreign,foreignArgs, function(err,result){ client.end()});
     console.log(requete)
     const request = "INSERT INTO comments (comments_articles,comments_body, comments_id, comments_author, comments_date) VALUES ($1,$2,DEFAULT,$3,$4)";
     const args = [requete.rows[0].articles_id, req.body.comment,req.body.author, req.body.date];
     const client2 = await pool.connect()
-    const requete2 = await client2.query(request,args, function(err,result){ done()});
+    const requete2 = await client2.query(request,args, function(err,result){ client2.end()});
     res.send(args);
     res.end();
-    res.socket.destroy();
-    pool.end();
+    
   })
   
   module.exports = router;
