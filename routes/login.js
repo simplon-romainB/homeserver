@@ -58,6 +58,7 @@ router.post('/', async(req,response, next) =>{
 }
     catch(err) {
         console.log(err)
+        response.end();
         return
     }
     

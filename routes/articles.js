@@ -18,7 +18,7 @@ router.get('/', async(req,response, next) =>{
     const requete =  await client2.query(request)
    
     response.send(requete.rows);
-    res.end();
+    response.end();
 });
 
 router.post('/', (req,res,next) => {
@@ -29,7 +29,7 @@ router.post('/', (req,res,next) => {
   const args = [req.body.titre, req.body.article, req.body.date];
   const client = pool.connect()
   const requete = client.query(request,args);
-  res.end();
+  response.end();
 })
 
 module.exports = router;
