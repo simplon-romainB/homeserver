@@ -27,6 +27,7 @@ router.get('/', async(req,response, next) =>{
   response.send(requete.rows);
   response.end()
   res.socket.destroy();
+  pool.end();
 });
 
 router.post('/', async(req,res,next) => {
@@ -43,6 +44,7 @@ router.post('/', async(req,res,next) => {
     res.send(args);
     res.end();
     res.socket.destroy();
+    pool.end();
   })
   
   module.exports = router;
