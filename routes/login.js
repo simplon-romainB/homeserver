@@ -9,10 +9,13 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true
 });
-
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+    next();
+  });
 let check;
 router.post('/', async(req,response, next) =>{
-    response.header("Access-Control-Allow-Origin", "*");
     try {
 
     const hash = "SELECT user_password FROM users WHERE user_email = $1"
