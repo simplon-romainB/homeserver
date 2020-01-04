@@ -22,9 +22,9 @@ router.get('/', async(req,response, next) =>{
   response.header("Access-Control-Allow-Origin", "*");
   const request = "SELECT * FROM comments";
   const client2 =  await pool.connect()
-  const requete =  await client2.query(request, function(err,result){ 
-    response.send(requete.rows);
-    response.end()
+  const requete =  await client2.query(request, (err,result) =>{ 
+    response.send(requete.rows),
+    response.end(),
     client2.end();
   })
  
@@ -41,11 +41,11 @@ router.post('/', async(req,res,next) => {
     const request = "INSERT INTO comments (comments_articles,comments_body, comments_id, comments_author, comments_date) VALUES ($1,$2,DEFAULT,$3,$4)";
     const args = [requete.rows[0].articles_id, req.body.comment,req.body.author, req.body.date];
     const client2 = await pool.connect()
-    const requete2 = await client2.query(request,args, function(err,result){ 
+    const requete2 = await client2.query(request,args, (err,result) => 
       
-      res.send(args);
-      res.end();
-      client2.end()});
+      res.send(args),
+      res.end(),
+      client2.end());
     
     
   })
