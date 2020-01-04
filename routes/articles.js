@@ -29,7 +29,7 @@ router.post('/', (req,res,next) => {
   const args = [req.body.titre, req.body.article, req.body.date];
   const client = pool.connect()
   const requete = client.query(request,args);
-  response.end();
+  res.end();
 })
 
 module.exports = router;
