@@ -15,6 +15,7 @@ const pool = new Pool({
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "*");
+  res.header("Connection", "close")
   next();
 });
 router.get('/', async(req,response, next) =>{

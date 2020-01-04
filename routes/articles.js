@@ -5,10 +5,18 @@ const bcrypt = require('bcryptjs');
 let jwt = require('jsonwebtoken');
 const config = require('./config.js');
 var middle = require('../middleware.js');
+var app = express();
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true
+});
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  res.header("Connection", "close")
+  next();
 });
 
 router.get('/', async(req,response, next) =>{
