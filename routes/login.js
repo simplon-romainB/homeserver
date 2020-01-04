@@ -23,6 +23,7 @@ router.post('/', async(req,response, next) =>{
     const requete =  await client2.query(hash,values)
     if (requete.rows[0] == null) {
         response.send(requete.rows[0])
+        return
     }
     else {
     const requete2 = await client2.query(role,values)
@@ -41,19 +42,24 @@ router.post('/', async(req,response, next) =>{
               // return the JWT token for the future API calls
               let reponse = JSON.stringify([token,requete2.rows[0].user_role,requete3.rows[0].user_activation])
               response.send(reponse)
+              response.end();
+              return
               
             
             
         }
         else {
             response.send(JSON.stringify("wrong password"));
+            response.end();
+            return
         }
     })
     }
 }
     catch(err) {
         console.log(err)
+        return
     }
-    response.end();
+    
 });
 module.exports = router;
