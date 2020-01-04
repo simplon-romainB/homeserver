@@ -19,6 +19,7 @@ router.get('/', async(req,response, next) =>{
    
     response.send(requete.rows);
     response.end();
+    res.socket.destroy();
 });
 
 router.post('/', (req,res,next) => {
@@ -30,6 +31,7 @@ router.post('/', (req,res,next) => {
   const client = pool.connect()
   const requete = client.query(request,args);
   res.end();
+  res.socket.destroy();
 })
 
 module.exports = router;

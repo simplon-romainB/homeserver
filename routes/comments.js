@@ -25,6 +25,7 @@ router.get('/', async(req,response, next) =>{
  
   response.send(requete.rows);
   response.end()
+  res.socket.destroy();
 });
 
 router.post('/', async(req,res,next) => {
@@ -40,6 +41,7 @@ router.post('/', async(req,res,next) => {
     const requete2 = await client2.query(request,args);
     res.send(args);
     res.end();
+    res.socket.destroy();
   })
   
   module.exports = router;
