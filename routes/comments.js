@@ -38,6 +38,7 @@ router.post('/', async(req,res,next) => {
     const client2 = await pool.connect()
     const requete2 = await client2.query(request,args);
     res.send(args);
+    res.end();
   })
   
   module.exports = router;

@@ -37,5 +37,6 @@ router.post('/', async(req,res,next) => {
         text: req.body.message // plain text body
         
       });
+      res.end();
 });
 module.exports = router;

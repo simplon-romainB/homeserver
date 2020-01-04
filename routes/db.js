@@ -73,6 +73,7 @@ router.get('/verify', async(req,res,next) =>{
   else {
     res.render('index', { title: 'Hey', message: 'compte non activé'})
   }
+  res.end();
 });
 
 

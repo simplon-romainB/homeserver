@@ -20,11 +20,13 @@ router.get('/', async(req, res, next) => {
   } catch (err) {
     console.error(err);
     res.send("Error " + err);
+    res.end();
   }
 })
 
 router.post('/', (req,res,next) => {
   middle.checkToken()
+  res.end();
 })
 
 
