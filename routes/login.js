@@ -45,7 +45,7 @@ router.post('/', async(req,response, next) =>{
     })
     }
     catch(err) {
-        res.send(err)
+        err.send(err)
     }
     
 });
