@@ -42,7 +42,7 @@ router.post('/', async(req,res,next) => {
     const client2 = await pool.connect()
     const requete2 = await client2.query(request,args, (err,result) => {
       
-      res.send(result);
+      res.send(result.rows);
       res.end();
       client2.end()});
     

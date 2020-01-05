@@ -24,7 +24,7 @@ router.get('/', async(req,response, next) =>{
     const request = "SELECT * FROM articles";
     const client2 =  await pool.connect()
     const requete =  await client2.query(request, (err,result) => {
-      response.send(requete.rows);
+      response.send(result.rows);
       response.end();
       client2.end();})
    
