@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
-  res.set("Connection", "close");
+ 
 
   // authorized headers for preflight requests
   // https://developer.mozilla.org/en-US/docs/Glossary/preflight_request
