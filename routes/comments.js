@@ -15,7 +15,7 @@ const pool = new Pool({
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "*");
-  res.header("Connection", "close")
+  res.header("Authorization", "Bearer");
   next();
 });
 router.get('/', async(req,response, next) =>{
@@ -41,9 +41,6 @@ router.post('/', async(req,res,next) => {
     const args = [result.rows[0].articles_id, req.body.comment,req.body.author, req.body.date];
     const client2 = await pool.connect()
     const requete2 = await client2.query(request,args, (err,result) => {
-      
-      res.send(result.rows);
-      res.end();
       client2.end()});
     
     }) 
