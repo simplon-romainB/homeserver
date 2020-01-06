@@ -30,7 +30,7 @@ router.post('/', async(req,response, next) =>{
     const requete3 = await client2.query(active,values, (err,result) =>{
 
     //let requeteJson = JSON.stringify(requete)
-    let hashFinal =requete.rows[0].user_password
+    let hashFinal =result4.rows[0].user_password
     let comparison = bcrypt.compare(req.body.password, hashFinal, function(err, res){
         check = res
         if (check === true){
