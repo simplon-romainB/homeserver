@@ -26,8 +26,8 @@ router.post('/', async(req,response, next) =>{
         return
     }
     else {
-    const requete2 = await client2.query(role,values)
-    const requete3 = await client2.query(active,values)
+    const requete2 = await client2.query(role,values, (errs,result2)=> {
+    const requete3 = await client2.query(active,values, (err,result) =>{
 
     //let requeteJson = JSON.stringify(requete)
     let hashFinal =requete.rows[0].user_password
@@ -40,9 +40,10 @@ router.post('/', async(req,response, next) =>{
                 }
               );
               // return the JWT token for the future API calls
-              let reponse = JSON.stringify([token,requete2.rows[0].user_role,requete3.rows[0].user_activation])
+              let reponse = JSON.stringify([token,result2.rows[0].user_role,result.rows[0].user_activation])
               response.send(reponse)
               response.end();
+              client2.end()
               return
               
             
@@ -51,14 +52,18 @@ router.post('/', async(req,response, next) =>{
         else {
             response.send(JSON.stringify("wrong password"));
             response.end();
+            client2.end()
             return
-        }
+    };
     })
+    })
+})
     }
 }
     catch(err) {
         console.log(err)
         response.end();
+        client2.end()
         return
     }
     

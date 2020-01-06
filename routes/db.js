@@ -28,7 +28,7 @@ router.post('/', async(req,res, next) =>{
   const values = [req.body.email, hash, "user"]
   try {
    const client2 = await pool.connect()
-   const requete = await client2.query(text,values)
+   const requete = await client2.query(text,values,(err,result) => client2.end())
   }
   catch(err) {
     console.error(err);
@@ -61,7 +61,7 @@ router.get('/verify', async(req,res,next) =>{
   const update = "UPDATE users SET user_activation = true WHERE user_email = $1"
   const optionQuery = [mailVerified]
   const client2 = await pool.connect()
-  const requete = await client2.query(update,optionQuery)
+  const requete = await client2.query(update,optionQuery, (err,result) => client2.end())
   
 
     }
