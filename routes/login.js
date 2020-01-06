@@ -20,6 +20,7 @@ app.use(function(req, res, next) {
 
 let check;
 router.post('/', async(req,response, next) =>{
+    response.header("Access-Control-Allow-Origin", "*");
     try {
 
     const hash = "SELECT user_password FROM users WHERE user_email = $1"
