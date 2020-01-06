@@ -39,8 +39,7 @@ router.post('/', async(req,res,next) => {
     const requete = await client.query(foreign,foreignArgs, async(err,result) => {
     const request = "INSERT INTO comments (comments_articles,comments_body, comments_id, comments_author, comments_date) VALUES ($1,$2,DEFAULT,$3,$4)";
     const args = [result.rows[0].articles_id, req.body.comment,req.body.author, req.body.date];
-    const client2 = await pool.connect()
-    const requete2 = await client2.query(request,args, (err,result) => {
+    const requete2 = await client.query(request,args, (err,result) => {
       });
     
     }) 
