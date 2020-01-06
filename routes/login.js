@@ -20,13 +20,13 @@ router.post('/', async(req,response, next) =>{
     const active = "SELECT user_activation FROM users WHERE user_email = $1"
     const values = [req.body.email]
     const client2 =  await pool.connect()
-    const requete =  await client2.query(hash,values)
-    if (requete.rows[0] == null) {
-        response.send(requete.rows[0])
+    const requete =  await client2.query(hash,values, async(errs2,result4) => {
+    if (result4.rows[0] == null) {
+        response.send(result4.rows[0])
         return
     }
     else {
-    const requete2 = await client2.query(role,values, (errs,result2)=> {
+    const requete2 = await client2.query(role,values, async(errs,result2)=> {
     const requete3 = await client2.query(active,values, (err,result) =>{
 
     //let requeteJson = JSON.stringify(requete)
@@ -58,8 +58,11 @@ router.post('/', async(req,response, next) =>{
     })
     })
 })
+    
     }
+})
 }
+    
     catch(err) {
         console.log(err)
         response.end();
@@ -68,4 +71,5 @@ router.post('/', async(req,response, next) =>{
     }
     
 });
+
 module.exports = router;
