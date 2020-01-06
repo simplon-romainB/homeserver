@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
   next();
 });
 router.get('/', async(req,response, next) =>{
-  response.header("Access-Control-Allow-Origin", "*");
+
   const request = "SELECT * FROM comments";
   const client2 =  await pool.connect()
   const requete =  await client2.query(request, (err,result) =>{ 
@@ -41,7 +41,7 @@ router.post('/', async(req,res,next) => {
     const args = [result.rows[0].articles_id, req.body.comment,req.body.author, req.body.date];
     const client2 = await pool.connect()
     const requete2 = await client2.query(request,args, (err,result) => {
-      client2.end()});
+      });
     
     }) 
   })
