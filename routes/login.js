@@ -30,7 +30,7 @@ router.post('/', async(req,response, next) =>{
     const requete =  await client2.query(hash,values, async(errs2,result4) => {
     if (result4.rows[0] == null) {
         response.send(result4.rows[0])
-        return
+        
     }
     else {
     const requete2 = await client2.query(role,values, async(errs,result2)=> {
@@ -51,7 +51,7 @@ router.post('/', async(req,response, next) =>{
               response.send(reponse)
               response.end();
               client2.end()
-              return
+              
               
             
             
@@ -60,7 +60,7 @@ router.post('/', async(req,response, next) =>{
             response.send(JSON.stringify("wrong password"));
             response.end();
             client2.end()
-            return
+            
     };
     })
     })
@@ -74,7 +74,7 @@ router.post('/', async(req,response, next) =>{
         console.log(err)
         response.end();
         client2.end()
-        return
+        
     }
     
 });
