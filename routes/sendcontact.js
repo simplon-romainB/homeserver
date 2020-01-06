@@ -20,23 +20,16 @@ app.use(function(req, res, next) {
 
 
 router.post('/', async(req,res,next) => {
-    let transporter = nodeMailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 465,
-        secure: true,
-        auth: {
-            // should be replaced with real sender's account
-            user: 'yyshtar@gmail.com',
-            pass: '3225199b'
-        }
+  const data = {
+    from: "Mailgun Sandbox <postmaster@sandbox2fb4006253504b5fa4e78cdcdf465765.mailgun.org>",
+    to: req.body.email,
+    subject: "contact message",
+    html: req.body.message
+  };
+  
+  
+  mg.messages().send(data, function (error, body) {
+    console.log(body);
     });
-    let info = await transporter.sendMail({
-        from: 'yyshtar@gmail.com', // sender address
-        to: "romain.barry69@gmail.com",
-        subject: req.body.email, // Subject line
-        text: req.body.message // plain text body
-        
-      });
-      res.end();
 });
 module.exports = router;

@@ -26,9 +26,11 @@ router.post('/', async(req,res,next) => {
   const request = "INSERT INTO articles (articles_id,articles_name,articles_body,articles_date) VALUES (DEFAULT,$1,$2,$3)";
   const args = [req.body.titre, req.body.article, req.body.date];
   const client = await pool.connect()
-  const requete = await client.query(request,args);
-  res.send(requete);
+  const requete = await client.query(request,args, (err,result) => {
+  res.send(result);
   res.end();
-})
+  requete.end()
+  })
+});
 
 module.exports = router;
