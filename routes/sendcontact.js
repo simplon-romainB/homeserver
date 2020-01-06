@@ -25,8 +25,8 @@ app.use(function(req, res, next) {
 router.post('/', async(req,res,next) => {
   const data = {
     from: "Mailgun Sandbox <postmaster@sandbox2fb4006253504b5fa4e78cdcdf465765.mailgun.org>",
-    to: req.body.email,
-    subject: "contact message",
+    to: "romain.barry69@gmail.com",
+    subject: req.body.email,
     html: req.body.message
   };
   
