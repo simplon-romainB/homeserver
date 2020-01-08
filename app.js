@@ -46,7 +46,13 @@ app.use((req, res, next) => {
       res.header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS');
       res.send();
   });
+  if (req.method === 'OPTIONS') {
+    res.send(200);
+  } else {
+    next();
+  }
 });
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
