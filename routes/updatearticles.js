@@ -20,6 +20,7 @@ router.put('/', async(req,res,next) => {
     res.end();
     client.end()
     })
+    console.log(requete)
   });
   
   module.exports = router;
