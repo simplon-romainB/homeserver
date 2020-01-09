@@ -14,7 +14,7 @@ const pool = new Pool({
 });
 
 router.delete('/', async(req,res,next) => {
-    middle.checkToken(req,res,next);
+    //middle.checkToken(req,res,next);
     const request = "DELETE FROM articles WHERE articles_id = $1" ;
     const args = [req.params.id];
     const client = await pool.connect()
