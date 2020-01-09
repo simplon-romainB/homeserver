@@ -13,7 +13,7 @@ const pool = new Pool({
 
 router.put('/', async(req,res,next) => {
     //middle.checkToken(req,res,next);
-    const request = "UPDATE articles SET 'articles_name' = '$1', 'articles_body' = '$2' WHERE 'articles_id' = $3";
+    const request = "UPDATE articles SET articles_name = $1, articles_body = $2 WHERE articles_id = $3";
     const args = [req.body.titre, req.body.article, req.body.id];
     const client = await pool.connect()
     const requete = await client.query(request,args, (err,result) => {
