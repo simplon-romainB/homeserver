@@ -19,9 +19,9 @@ router.delete('/', async(req,res,next) => {
     const args = [req.params.id];
     const client = await pool.connect()
     const requete = await client.query(request,args, (err,result) => {
-    res.send(result);
+    
     res.end();
-    requete.end()
+    client.end()
     })
   });
   
