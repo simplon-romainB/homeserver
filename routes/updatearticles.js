@@ -19,7 +19,7 @@ router.put('/', async(req,res,next) => {
     const requete = await client.query(request,args, (err,result) => {
     res.send(result);
     res.end();
-    result.end()
+    client.end()
     })
   });
   
