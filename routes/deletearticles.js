@@ -12,9 +12,9 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true
 });
-
+middle.checkToken(req,res,next);
 router.post('/', async(req,res,next) => {
-    middle.checkToken(req,res,next);
+    //middle.checkToken(req,res,next);
     const request = "DELETE FROM articles WHERE articles_id = $1" ;
     const args = [req.body.id];
     const client = await pool.connect()
