@@ -13,7 +13,7 @@ const pool = new Pool({
   ssl: true
 });
 
-router.delete('/', async(req,res,next) => {
+router.post('/', async(req,res,next) => {
     middle.checkToken(req,res,next);
     const request = "DELETE FROM articles WHERE articles_id = $1" ;
     const args = [req.httpOptions.body.id];
