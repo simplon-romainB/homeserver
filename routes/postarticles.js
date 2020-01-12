@@ -12,18 +12,14 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true
 });
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "*");
-  next();
-});
+
 //app.use(cors())
 
 
 
 router.post('/', async(req,res,next) => {
   middle.checkToken(req,res,next);
-  const request = "INSERT INTO articles (articles_id,articles_name,articles_body,articles_date, articles_categorie) VALUES (DEFAULT,$1,$2,$3,$4)";
+  const request = "INSERT INTO articles (articles_id,articles_name,articles_body,articles_date,articles_categorie) VALUES (DEFAULT,$1,$2,$3,$4)";
   const args = [req.body.titre, req.body.article, req.body.date, req.body.categorie];
   const client = await pool.connect()
   const requete = await client.query(request,args, (err,result) => {
