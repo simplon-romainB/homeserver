@@ -21,7 +21,7 @@ app.use(function(req, res, next) {
 });
 
 router.get('/', async(req,response, next) =>{
-    res.setHeader("Content-Type", "text/html");
+    response.setHeader("Content-Type", "text/html");
     const request = "SELECT * FROM articles";
     const client2 =  await pool.connect()
     const requete =  await client2.query(request, (err,result) => {
