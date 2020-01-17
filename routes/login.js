@@ -12,11 +12,7 @@ const pool = new Pool({
 });
 
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "*");
-    next();
-  });
+
 
 let check;
 router.post('/', async(req,response, next) =>{

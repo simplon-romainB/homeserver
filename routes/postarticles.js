@@ -1,11 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const { Pool } = require('pg');
-const bcrypt = require('bcryptjs');
-let jwt = require('jsonwebtoken');
-const config = require('./config.js');
 var middle = require('../middleware.js');
-var app = express();
+
 
 
 const pool = new Pool({

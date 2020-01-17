@@ -1,23 +1,15 @@
 var express = require('express');
 var router = express.Router();
 const { Pool } = require('pg');
-const bcrypt = require('bcryptjs');
-let jwt = require('jsonwebtoken');
-const config = require('./config.js');
 var middle = require('../middleware.js');
-var app = express();
+
 
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true
 });
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "*");
-  res.header("Authorization", "Bearer");
-  next();
-});
+
 router.get('/', async(req,response, next) =>{
 
   const request = "SELECT * FROM comments";

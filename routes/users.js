@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const { Pool } = require('pg');
-const bcrypt = require('bcryptjs');
 const middle = require('../middleware');
 
 const pool = new Pool({
