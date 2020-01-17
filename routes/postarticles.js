@@ -25,7 +25,7 @@ router.post('/', async(req,res,next) => {
   const client = await pool.connect()
   const requete = await client.query(request,args, (err,result) => {
   res.end();
-  requete.end()
+  client.end()
   })
 });
 
